@@ -26,7 +26,25 @@ async function getRandomUser() {
 
 function addData(obj) {
     data.push(obj);
+    updateData();
 }
+
+function updateData(providedData = data) {
+    main.innerHTML = `<h2><strong>Person</strong> Wealth</h2>`
+    data.forEach((item) => {
+        const element = document.createElement('div')
+        element.classList.add('person')
+        element.innerHTML = `<strong>${item.name}</strong> ${convertNumber(item.money)}`
+        
+        main.appendChild(element)
+    })
+}
+
+function convertNumber(number) {
+return '$' + number.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+}
+
+addUser.addEventListener('click', getRandomUser)
 
 console.log(data);
 
