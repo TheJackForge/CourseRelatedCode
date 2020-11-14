@@ -106,6 +106,17 @@ function sortPoorest() {
     updateDom()
 }
 
+function calculateWealth() {
+    const wealth = data.reduce((acc, user) => (acc += user.money), 0)
+    console.log(wealth);
+    const element = document.createElement('div')
+    element.classList.add('person')
+    element.style.backgroundColor = 'lightblue'
+    element.innerHTML += `<strong>Total Wealth</strong> <b>${convertMoney(wealth)}</b>`
+    main.appendChild(element);  
+}
+
+
 
 addUser.addEventListener('click', getRandomPerson)
 double.addEventListener('click', doubleMoney);
@@ -113,3 +124,4 @@ showMillion.addEventListener('click', filterMillion)
 sortAlphabet.addEventListener('click', sortAlphabetically)
 sortRich.addEventListener('click', sortRichest)
 sortPoor.addEventListener('click', sortPoorest)
+wealth.addEventListener('click', calculateWealth)
