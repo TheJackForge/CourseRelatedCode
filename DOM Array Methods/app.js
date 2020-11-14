@@ -20,12 +20,35 @@ async function getRandomUser() {
         name: `${user.name.first} ${user.name.last}`,
         money: Math.floor(Math.random() * 1300000)
     }
-
     addData(newUser)
 }
 
 function addData(obj) {
     data.push(obj);
+    updateData();
+}
+
+function doubleMoney() {
+    data = data.map((user) => {
+        return { 
+            ...user, 
+            money: user.money * 2
+        }
+    })
+    updateData();
+}
+
+function sortByRichest() {
+    data = data.sort(function (a,b) {
+        return b.money - a.money
+    })
+    updateData();
+}
+
+function filterMillion() {
+    data = data.filter(function(user) {
+        return user = user.money > 1000000;   
+    })
     updateData();
 }
 
@@ -45,6 +68,9 @@ return '$' + number.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
 }
 
 addUser.addEventListener('click', getRandomUser)
+double.addEventListener('click', doubleMoney)
+sort.addEventListener('click', sortByRichest)
+showMillion.addEventListener('click', filterMillion)
 
 console.log(data);
 
