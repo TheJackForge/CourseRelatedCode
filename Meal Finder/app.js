@@ -32,9 +32,47 @@ function searchMeal(e) {
         } else {
         alert('Please enter a search term')
     }
-
-   
 }   
+
+function createMealById(mealId) {
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+        .then( response => response.json())
+        .then( data => {
+        const meal = data.meals[0];
+        addMealToDom(meal)
+        })
+}
+
+function addMealToDom(meal) {
+
+    let ingredients = [];
+
+    for (let i=1; i<=20; i++) {
+
+    ingredients.push( `${meal[`strIngredient${i}`]}`)
+
+    console.log(ingredients)
+    }
+
+    singleMeal.innerHTML = `<div class="single-meal">
+        <h1>${meal.strMeal}</h1>
+        <img src="${meal.strMealThumb}">
+        <div class="single-meal-info">
+        ${meal.strCategory ? `<p>${meal.strCategory}</p>` : `<p>''</p>`}
+        ${meal.strArea ? `<p>${meal.strArea}</p>` : `<p>''</p>`}
+            <div class="main">
+                <p>${meal.strInstructions}</p>
+                <h2>Ingredients</h2>
+                <ul>
+                ${ingredients.map( ing => `<li>${ing}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+    </div>
+    `
+
+}
+
 
 submit.addEventListener('submit', searchMeal)
 meals.addEventListener('click', (e) => {
@@ -48,7 +86,7 @@ meals.addEventListener('click', (e) => {
     if (mealInfo) {
         const mealId = mealInfo.dataset.mealid;
         console.log(mealId);
+        createMealById(mealId);
     }
 
-    // console.log(mealInfo);
 })
