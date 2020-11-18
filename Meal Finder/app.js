@@ -48,31 +48,31 @@ function addMealToDom(meal) {
     let ingredients = [];
 
     for (let i=1; i<=20; i++) {
-
-    ingredients.push( `${meal[`strIngredient${i}`]}`)
-
-    console.log(ingredients)
+    if (meal[`strIngredient${i}`]) {
+    ingredients.push( `${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`);
+    } else {
+        break;
     }
-
-    singleMeal.innerHTML = `<div class="single-meal">
-        <h1>${meal.strMeal}</h1>
-        <img src="${meal.strMealThumb}">
-        <div class="single-meal-info">
-        ${meal.strCategory ? `<p>${meal.strCategory}</p>` : `<p>''</p>`}
-        ${meal.strArea ? `<p>${meal.strArea}</p>` : `<p>''</p>`}
-            <div class="main">
-                <p>${meal.strInstructions}</p>
-                <h2>Ingredients</h2>
-                <ul>
-                ${ingredients.map( ing => `<li>${ing}</li>`).join('')}
-                </ul>
-            </div>
-        </div>
-    </div>
-    `
-
 }
-
+console.log(ingredients)
+singleMeal.innerHTML = `
+<div class="single-meal">
+<h1>${meal.strMeal}</h1>
+<img src="${meal.strMealThumb}">
+<div class="single-meal-info">
+${meal.strCategory ? `<p>${meal.strCategory}</p>` : `<p>''</p>`}
+${meal.strArea ? `<p>${meal.strArea}</p>` : `<p>''</p>`}
+    <div class="main">
+        <p>${meal.strInstructions}</p>
+        <h2>Ingredients</h2>
+        <ul>
+        ${ingredients.map( ing => `<li>${ing}</li>` ).join('')}
+        </ul>
+    </div>
+</div>
+</div>
+`
+}
 
 submit.addEventListener('submit', searchMeal)
 meals.addEventListener('click', (e) => {
@@ -85,7 +85,6 @@ meals.addEventListener('click', (e) => {
     })
     if (mealInfo) {
         const mealId = mealInfo.dataset.mealid;
-        console.log(mealId);
         createMealById(mealId);
     }
 
