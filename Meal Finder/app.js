@@ -4,7 +4,7 @@ const searchBtn = document.querySelector('.search-button');
 const resultHeading = document.getElementById('result-heading');
 const meals = document.getElementById('meals');
 const singleMeal = document.getElementById('single-meal');
-const random = document.getElementById('random-button');
+const random = document.getElementById('random');
 
 
 function searchMeal(e) {
@@ -62,6 +62,7 @@ singleMeal.innerHTML = `
 <div class="single-meal-info">
 ${meal.strCategory ? `<p>${meal.strCategory}</p>` : `<p>''</p>`}
 ${meal.strArea ? `<p>${meal.strArea}</p>` : `<p>''</p>`}
+</div>
     <div class="main">
         <p>${meal.strInstructions}</p>
         <h2>Ingredients</h2>
@@ -70,11 +71,23 @@ ${meal.strArea ? `<p>${meal.strArea}</p>` : `<p>''</p>`}
         </ul>
     </div>
 </div>
-</div>
 `
 }
 
+function searchRandom() {
+    resultHeading.innerHTML = '';
+    meals.innerHTML = '';
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    .then( response => response.json())
+    .then( data => {
+        const meal = data.meals[0]
+        addMealToDom(meal)
+    })
+}
+
+
 submit.addEventListener('submit', searchMeal)
+
 meals.addEventListener('click', (e) => {
     const mealInfo = e.path.find( item => {
         if (item.classList) {
@@ -89,3 +102,5 @@ meals.addEventListener('click', (e) => {
     }
 
 })
+
+random.addEventListener('click', searchRandom)
