@@ -11,13 +11,6 @@ const localStorageTransactions = JSON.parse(localStorage.getItem('transactions')
 
 let transactions = localStorage.getItem('transactions') !== null ? localStorageTransactions : [];
 
-// let transactions = [
-//     {id: 1, text: 'Flowers', amount: 30},
-//     {id: 2, text: 'Flowers', amount: -40},
-//     {id: 3, text: 'Flowers', amount: 300},
-//     {id: 4, text: 'Flowers', amount: -30}
-// ];
-
 
 function initApp() {
     list.innerHTML = ''
