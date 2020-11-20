@@ -6,9 +6,12 @@ const audio = document.getElementById('audio');
 const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
+const progress = document.getElementById('progress')
+const progressContainer = document.getElementById('progress-container')
+
 const songs = ['hey', 'summer', 'ukulele']
 
-let songIndex = 2;
+let songIndex = 0;
 
 loadSong(songs[songIndex])
 
@@ -19,44 +22,48 @@ function loadSong(song) {
 }
 
 function playSong() {
-    // loadSong(songs[songIndex]);
-    console.log(audio.src);
+    
     musicContainer.classList.add('play');
     playBtn.firstElementChild.classList.remove('fa-play')
     playBtn.firstElementChild.classList.add('fa-pause')
+    audio.play();
+
+    progressBar();
+}
+
+function progressBar() {
+    
+    const percentage = (audio.currentTime / audio.duration) * 100
+    progress.style.width = `${percentage}%`
+
+    if (percentage === 100) {
+        nextSong();
+    }
 }
 
 function pauseSong() {
-    console.log('PAUSE');
     musicContainer.classList.remove('play');
     playBtn.firstElementChild.classList.remove('fa-pause')
     playBtn.firstElementChild.classList.add('fa-play')
+    audio.pause();
 }
+ 
 
-// function prevMusic() {
-//     loadSong(songs[songIndex]);
-//     songIndex--;
-//     console.log(songs[songIndex])
-//     if (songIndex === 0) {
-//         songIndex = 3;
-//     }
-// }
-
-
-
-// function nextMusic() {
-//     loadSong(songs[songIndex]);
-//     songIndex++;
-//     console.log(songs[songIndex])
-//     if (songIndex === songs.length-1) {
-//         songIndex = 0 - 1;
-//     }
-// }
-
-
-
-// Event Listeners
-// prevBtn.addEventListener('click', prevMusic)
+// Event Listeners / Buttons
+prevBtn.addEventListener('click', () => {
+    
+    songIndex--;
+    
+    if (songIndex < 0) {
+        songIndex = songs.length -1 ;
+    }
+    
+    loadSong(songs[songIndex])
+    if (musicContainer.classList.contains('play')) {
+    audio.play();
+    audio.currentTime = 0;
+    }
+})
 
 playBtn.addEventListener('click', () => {
     const isPlaying = musicContainer.classList.contains('play');
@@ -68,4 +75,30 @@ playBtn.addEventListener('click', () => {
     }
 })
 
-// nextBtn.addEventListener('click', nextMusic)
+function nextSong() {
+    songIndex++;
+    
+    if (songIndex > songs.length - 1) {
+        songIndex = 0;
+    }
+    
+    progress.style.width = 0;
+
+    loadSong(songs[songIndex])
+    if (musicContainer.classList.contains('play')) {
+        audio.play();
+        audio.currentTime = 0;
+    }
+}
+
+function scrub(e) {
+    const scrubTime = (e.offsetX / progressContainer.offsetWidth) * audio.duration;
+    audio.currentTime = scrubTime;
+    console.log(e)
+}
+
+nextBtn.addEventListener('click', nextSong)
+
+progressContainer.addEventListener('click', scrub)
+
+audio.addEventListener('timeupdate', progressBar)

@@ -106,8 +106,8 @@ body {
   width: calc(100% - 40px);
   padding: 10px 10px 10px 150px;
   transform: translateY(0%);
-  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-  z-index: 0;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in-out;
+  opacity: 0;
 }
 
 .music-container.play .music-info {
