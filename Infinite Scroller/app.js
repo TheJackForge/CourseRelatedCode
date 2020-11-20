@@ -44,8 +44,23 @@ function showLoading() {
         showPosts();
     }, 300)
    }, 1000)
+}
 
+function filterPosts(e) {
+    const searchParam = e.target.value.toUpperCase();
+    const searchedPosts = document.querySelectorAll('.post');
 
+    searchedPosts.forEach( post => {
+        const titleText = post.querySelector('.post-title').innerText.toUpperCase();
+        const bodyText = post.querySelector('.post-body').innerText.toUpperCase();
+        
+        if (titleText.indexOf(searchParam) > -1 || bodyText.indexOf(searchParam) > -1) {
+            post.style.display = 'flex'
+        } else {
+            post.style.display = 'none'
+        }
+    })
+    console.log(searchParam);
 }
 
 window.addEventListener('scroll', () => {
@@ -58,3 +73,5 @@ window.addEventListener('scroll', () => {
 
 loadPosts();
 showPosts();
+
+filter.addEventListener('input', filterPosts)
