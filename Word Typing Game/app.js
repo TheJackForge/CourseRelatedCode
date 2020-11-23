@@ -3,20 +3,24 @@ const settings = document.getElementById('settings');
 const settingsForm = document.getElementById('settings-form');
 const text = document.getElementById('text');
 const difficulty = document.getElementById('difficulty');
+const startbtn = document.getElementById('start-btn')
 
-console.log(difficulty.value)
 const wordArray = ['Apple', 'Orange', 'Banana', 'Tangerine', 'Lime', 'Cherry']
+
 
 let word = document.getElementById('word')
 let timer = document.getElementById('time')
 let score = document.getElementById('score')
 
 score.innerHTML = 0;
-time.innerText = +10;
+time.innerText = 10;
+
+
+getNewWord();
 
 settingsBtn.addEventListener('click', () => {
     settings.classList.toggle('hide');
-    
+    console.log('test')
 })
 
 function getNewWord() {
@@ -28,23 +32,40 @@ function clearInput() {
 }
 
 function difficultySelect() {
-    console.log(difficulty.value)
+    let difficultyValue = difficulty.value;
+    gamePlay(difficultyValue);
 }
 
-function gamePlay() {
+function gamePlay(difficultyValue) {
     let answer = text.value;
     const newWord = word.innerText;
-
+    console.log(typeof difficultyValue);
     if (answer === newWord) {
+        if (difficultyValue === 'Easy') {
+            time.innerText = +time.innerText + 4;2
+            console.log('Easy Mode')
+        } else if (difficultyValue === 'Medium') {
+            time.innerText = +time.innerText + 3;
+            console.log('Medium Mode')
+        } else if (difficultyValue === 'Hard') {
+            time.innerText = +time.innerText + 2;
+            console.log('Hard Mode')
+        }
+
+
         score.innerText++;
-        time.innerText = +time.innerText + 5;
         clearInput();
         getNewWord();
     }
-     console.log(newWord);
+    
+}
+
+function startTimer() {
+    setInterval(function () {
+        time.innerText--;
+    }, 1000)
 }
 
 difficulty.addEventListener('change', difficultySelect)
-text.addEventListener('input', gamePlay)
-
-getNewWord();
+text.addEventListener('input', difficultySelect)
+startbtn.addEventListener('click', startTimer)
