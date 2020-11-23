@@ -71,10 +71,21 @@ function createBox(item) {
     `;
 
     // @todo - speak event
+    speechBox.addEventListener('click', () => {
+        setTextMessage(text);
+        console.log(setTextMessage(text))
+        speakText();
 
+        // Add Active Effect
+        speechBox.classList.add('active');
+        setTimeout(() => speechBox.classList.remove('active'), 800);
+    })
     main.appendChild(speechBox);
-    
+
 }
+
+// Init Speech Synth
+const message = new SpeechSynthesisUtterance();
 
 let voices = [];
 
@@ -89,12 +100,39 @@ function populateVoiceList() {
     })
 }
 
+// Set Text
+
+function setTextMessage(text) {
+    message.text = text;
+}
+
+// Speak Text
+
+function speakText() {
+    speechSynthesis.speak(message);
+}
+
 function toggleTextBox() {
     const textbox = document.getElementById('text-box')
     textbox.classList.toggle('show');
     
 }
 
+
+function changeVoices(e) {
+    message.voice = voices.find(voice => voice.name === e.target.value)
+}
+
+function readText() {
+    console.log(textarea.value)
+    const textAreaText = textarea.value
+    setTextMessage(textAreaText)
+    speakText();
+}
+
+// Read Text 
+
+readBtn.addEventListener('click', readText)
 
 // Voices Changed
 
@@ -105,5 +143,9 @@ toggleBtn.addEventListener('click', toggleTextBox)
 
 // Close Button
 closeBtn.addEventListener('click', toggleTextBox)
+
+// Select Different Voice
+
+voicesSelect.addEventListener('change', changeVoices)
 
 populateVoiceList();
