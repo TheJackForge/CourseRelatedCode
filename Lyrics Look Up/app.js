@@ -18,10 +18,18 @@ async function getMoreSongs(url) {
     const data = await response.json();
     populateDOM(data)
 }
-async function getLyrics(songId) {
-    fetch(`${apiUrl}/suggest/${songId}`)
+function getLyrics(artist, songTitle) {
+    fetch(`${apiUrl}/v1/${artist}/${songTitle}`)
     .then (response => response.json())
-    .then (data => populateDOM(data))
+    .then (data => {
+        const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+        resultContainer.innerHTML = `
+        ${lyrics}
+        `
+        moreResults.innerHTML = ''
+    })
+
+    
 }
 
 
@@ -40,7 +48,7 @@ function populateDOM(results) {
         const title =  single.title
         songItem.innerHTML = `
         <span><strong>${artist}</strong> - ${title}</span>
-        <button class="btn" id="${id}">Get Lyrics</button>
+        <button class="btn" id="${id}" data-artist="${artist}" data-songtitle="${title}">Get Lyrics</button>
         `
         list.appendChild(songItem)      
 })
@@ -71,27 +79,27 @@ form.addEventListener('submit', (e) => {
 })
 
 
-moreResults.addEventListener('click', (e) => {
-    if (e.target.id === 'next') {
-        moreResults.innerHTML = ''
-        resultContainer.innerHTML = ''
-        getSongInfoNext(results.next)
-    }
-})
+// moreResults.addEventListener('click', (e) => {
+//     if (e.target.id === 'next') {
+//         moreResults.innerHTML = ''
+//         resultContainer.innerHTML = ''
+//         getSongInfoNext(results.next)
+//     }
+// })
 
-moreResults.addEventListener('click', (e) => {
-    if (e.target.id === 'prev') {
-        moreResults.innerHTML = ''
-        resultContainer.innerHTML = ''
-        getSongInfoPrev(results.prev)
-    }
-})
+// moreResults.addEventListener('click', (e) => {
+//     if (e.target.id === 'prev') {
+//         moreResults.innerHTML = ''
+//         resultContainer.innerHTML = ''
+//         getSongInfoPrev(results.prev)
+//     }
+// })
 
 
 resultContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn')) {
-        console.log(e.target.id)
-        const songId = e.target.id
-        getLyrics(songId)
+        const artist = e.target.getAttribute('data-artist')
+        const songTitle = e.target.getAttribute('data-songtitle')
+        getLyrics(artist, songTitle)
     }
 })
