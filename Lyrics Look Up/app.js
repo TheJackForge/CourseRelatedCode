@@ -24,6 +24,8 @@ function getLyrics(artist, songTitle) {
     .then (data => {
         const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
         resultContainer.innerHTML = `
+        <h2><strong>${artist}</strong> - ${songTitle}</h2>
+
         ${lyrics}
         `
         moreResults.innerHTML = ''
