@@ -5,7 +5,7 @@
 }
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("/img/pparnxoxo-2v3ZT3w0DX8-unsplash.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,11 +23,50 @@ body {
 }
 
 .countdown {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+  transform: scale(2);
 }
 
 .time {
-  margin: 0px 20px;
+  margin: 0px 15px;
+}
+
+.time h2 {
+  margin: 0 0 5px;
+}
+
+h1 {
+  font-size: 60px;
+  margin: -80px 0 40px;
+}
+
+.year {
+  font-size: 200px;
+  z-index: -1;
+  opacity: 0.15;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 45px;
+  }
+
+  .time {
+    margin: 5px;
+  }
+
+  .time h2 {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .time small {
+    font-size: 10px;
+  }
 }
