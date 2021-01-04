@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.2"></script>
+</head>
+<body>
+    <h1>Hello!</h1>
+    <div id="app">
+            <div v-if="showBooks">
+            <p>{{ title }} - {{author}} - {{age}}</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
