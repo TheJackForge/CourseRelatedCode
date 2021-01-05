@@ -1,7 +1,7 @@
 <template>
   <h1>{{title}}</h1>
   <p>Welcome...</p>
-  <div v-if="showModal">
+  <teleport to=".modals" v-if="showModal">
     <Modal theme="sale" @close="toggleModal">
       <template v-slot:links>
         <a href="#">Sign up now</a>
@@ -10,42 +10,15 @@
       <h1>Ninja Giveaway!</h1>
       <p>Grab your ninja swag for half price!</p>
     </Modal>
-  </div>
-  <div v-if="showModal2">
-    <Modal theme="extremeSale" @close"toggleModalTwo">
-      <template v-slot:links2>
-        <span>YOU HAVE JUST UNLOCKED AMAZING SAVINGS!</span>
-      </template>
-      <h1>Ninja Giveaway!</h1>
-      <p>Grab your ninja swag for half price!</p>
-    </Modal>
-  </div>
-  <button @click.alt="toggleModal">open modal (alt)</button>
-  <button @click="toggleModalTwo">open modal 2</button>
-</template>
+  </teleport>
 
-<template>
-  <h1>{{title}}</h1>
-  <p>Welcome...</p>
-  <div v-if="showModal">
-    <Modal theme="sale" @close="toggleModal">
-      <template v-slot:links>
-        <a href="#">Sign up now</a>
-        <a href="#">More info</a>
-      </template>
-      <h1>Ninja Giveaway!</h1>
-      <p>Grab your ninja swag for half price!</p>
+  <teleport to=".modals" v-if="showModal2">
+        <Modal @close="toggleModalTwo">
+        <h1>Jack Forge Giveaway!</h1>
+        <p>Grab your Jack Forge swag for half price!</p>
     </Modal>
-  </div>
-  <div v-if="showModal2">
-    <Modal theme="extremeSale" @close"toggleModalTwo">
-      <template v-slot:links2>
-        <span>YOU HAVE JUST UNLOCKED AMAZING SAVINGS!</span>
-      </template>
-      <h1>Ninja Giveaway!</h1>
-      <p>Grab your ninja swag for half price!</p>
-    </Modal>
-  </div>
+  </teleport>
+
   <button @click.alt="toggleModal">open modal (alt)</button>
   <button @click="toggleModalTwo">open modal 2</button>
 </template>
@@ -60,8 +33,6 @@ export default {
   data() {
     return {
       title: 'My First Vue App',
-      header: 'Sign up for the Giveaway!',
-      text: 'Grab your ninja swag for half price!',
       showModal: false,
       showModal2: false
     }
@@ -72,13 +43,14 @@ export default {
     },
     toggleModalTwo() {
       this.showModal2 = !this.showModal2
+      console.log(this.showModal2)
     }
   }
 }
 </script>
 
 <style>
-#app {
+#app, .modals{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

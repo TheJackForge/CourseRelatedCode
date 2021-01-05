@@ -4,7 +4,6 @@
             <slot></slot>
             <div class="actions">
                 <slot name="links"></slot>
-                <slot name="links2"></slot>
             </div>
         </div>
     </div>
