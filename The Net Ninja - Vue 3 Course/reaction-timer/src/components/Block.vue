@@ -28,12 +28,11 @@ export default {
         },
         stopTimer() {
             clearInterval()
-            console.log(this.reactionTime)
+            this.$emit('end', this.reactionTime)
         }
         
     }
 }
-
 </script>
 
 <style>
