@@ -2,7 +2,7 @@
   <div class="home">
     <div v-if="projects.length">
       <FilterNav @filterChange="current = $event" :current="current"/>
-      <div v-for="project in projects" :key="project.id">
+      <div v-for="project in filteredProjects" :key="project.id">
         <SingleProject :project="project" @delete="handleDelete" @complete="handleComplete"/>
       </div>
     </div>
@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       projects: [ ],
-      current: 'all'
+      current: 'all',
+      uri: 'http://localhost:3000/projects'
     }
   },
   mounted() {
@@ -40,6 +41,18 @@ export default {
       })
       p.complete = !p.complete
     },
+  },
+  computed: {
+    filteredProjects() {
+      if (this.current === 'completed') {
+        return this.projects.filter( (project) => project.complete)
+        console.log(this.current)
+      }
+      if (this.current === 'ongoing') {
+        return this.projects.filter( (project) => !project.complete)
+      }
+      return this.projects
+    }
   }
 }
 </script>
