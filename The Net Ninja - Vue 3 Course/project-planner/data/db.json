@@ -7,16 +7,34 @@
       "complete": false
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Create new homepage header",
       "details": "Lorem ipsum",
       "complete": false
     },
     {
-      "id": 3,
-      "title": "Create new homepage header",
-      "details": "Lorem ipsum",
-      "complete": false
+      "title": "make a new website",
+      "details": "blah blah blah",
+      "complete": false,
+      "id": 4
+    },
+    {
+      "title": "Design a new website",
+      "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet nisi sapien. Etiam rutrum, felis non ornare viverra, ante nibh sodales lectus, mattis scelerisque justo velit a magna. Praesent sodales leo ut sem feugiat sagittis. Nulla facilisi. Donec augue justo, eleifend eget nibh vitae, rutrum iaculis eros. Sed id elit at neque maximus ornare. Vestibulum ac arcu id turpis volutpat suscipit non sit amet quam. Aenean in sem lectus. Curabitur nec diam sit amet augue placerat pharetra sed ac metus. Cras at bibendum neque. Cras rutrum sapien ut finibus pretium. Maecenas orci nunc, suscipit ut neque at, facilisis commodo mauris. Ut mattis laoreet odio, quis pharetra odio rhoncus eu. Donec hendrerit est in venenatis ornare. Phasellus interdum elit neque, quis tempor risus viverra eu. Phasellus eros leo, volutpat id vehicula vehicula, tristique vel diam.",
+      "complete": false,
+      "id": 5
+    },
+    {
+      "title": "Code up something new",
+      "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet nisi sapien. Etiam rutrum, felis non ornare viverra, ante nibh sodales lectus, mattis scelerisque justo velit a magna. Praesent sodales leo ut sem feugiat sagittis. Nulla facilisi. Donec augue justo, eleifend eget nibh vitae, rutrum iaculis eros. Sed id elit at neque maximus ornare. Vestibulum ac arcu id turpis volutpat suscipit non sit amet quam. Aenean in sem lectus. Curabitur nec diam sit amet augue placerat pharetra sed ac metus. Cras at bibendum neque. Cras rutrum sapien ut finibus pretium. Maecenas orci nunc, suscipit ut neque at, facilisis commodo mauris. Ut mattis laoreet odio, quis pharetra odio rhoncus eu. Donec hendrerit est in venenatis ornare. Phasellus interdum elit neque, quis tempor risus viverra eu. Phasellus eros leo, volutpat id vehicula vehicula, tristique vel diam.",
+      "complete": false,
+      "id": 6
+    },
+    {
+      "title": "This is a new project item",
+      "details": "lorem lorem",
+      "complete": false,
+      "id": 7
     }
   ]
 }
