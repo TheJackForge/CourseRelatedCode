@@ -1,6 +1,6 @@
 <template>
   <h1>Edit Project</h1>
-      <form>
+      <form @submit.prevent="handleSubmit">
         <label>Title:</label>
         <input type="text" required v-model="title">
         <label>Details:</label>
@@ -19,6 +19,23 @@ export default {
             uri: 'http://localhost:3000/projects/' + this.id
         }
     },
+    methods: {
+        handleSubmit() {
+            fetch(this.uri, { 
+                method: 'PATCH',
+                body: JSON.stringify({
+                    title: this.title,
+                    details: this.details
+                }),
+                headers: { 'Content-Type': 'application/json'}
+            })
+            .then( (res) => res.json())
+            .then(data => console.log(data))
+            .then( () => {
+                this.$router.push('/')
+            }).catch((err) => console.log(err))  
+        }
+    },
     mounted() {
         fetch(this.uri)
             .then(res => res.json())
@@ -31,5 +48,7 @@ export default {
 </script>
 
 <style>
-
+button {
+    cursor: pointer;
+}
 </style>

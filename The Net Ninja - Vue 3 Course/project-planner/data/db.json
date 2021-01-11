@@ -7,12 +7,6 @@
       "complete": false
     },
     {
-      "id": 3,
-      "title": "Create new homepage header",
-      "details": "Lorem ipsum",
-      "complete": false
-    },
-    {
       "title": "make a new website",
       "details": "blah blah blah",
       "complete": false,
@@ -35,6 +29,18 @@
       "details": "lorem lorem",
       "complete": false,
       "id": 7
+    },
+    {
+      "title": "sdfsdfsd",
+      "details": "test test",
+      "complete": false,
+      "id": 8
+    },
+    {
+      "title": "TEST TEST",
+      "details": "sdasdfdfdsasdf",
+      "complete": false,
+      "id": 9
     }
   ]
 }
