@@ -1,42 +1,25 @@
 <template>
   <div class="home">
-    <h1>home</h1>
-    <input type="text" v-model="search">
-    <p>Search Term - {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">{{name}}</div>
-    <button @click="handleClick">Stop Watching</button>
+    <h1>Home</h1>
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
 
-import { computed, ref, watch, watchEffect  } from 'vue'
+import PostList from '../components/PostList.vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Home',
+  components: { PostList },
   setup() {
-    const search = ref('')
-    const names = ref( ['mario', 'luigi', 'yoshi', 'toad', 'peach', 'bowser', 'daisy', 'koopa'])
-
-    const stopWatch = watch(search, () => {
-      console.log('watch function ran')
-    })
-
-    const stopEffect = watchEffect(() => {
-    console.log('watchEffect function ran', search.value)
-    })
-
-    const matchingNames = computed( () => {
-      return names.value.filter((name) => name.includes(search.value))
-    })
-
-    const handleClick = () => {
-      stopWatch()
-      stopEffect()
-    }
-
-    return { names, search, matchingNames, handleClick }
-    }   
+    const posts = ref( [
+      { title: 'welcome to the blog', body: 'bomb wristwatch modem pre- plastic garage artisanal garage katana crypto- hotdog. -ware advert gang man market youtube euro-pop tanto augmented reality sunglasses human. A.I. girl knife soul-delay jeans garage film claymore mine bicycle assassin paranoid. corrupted paranoid receding woman table girl range-rover plastic bomb sunglasses DIY. sub-orbital numinous corporation claymore mine motion geodesic sensory marketing post- bridge media. pistol semiotics long-chain hydrocarbons vehicle systema otaku drugs math- tank-traps physical hacker. disposable San Francisco market tanto otaku urban hotdog advert man render-farm youtube. marketing woman cardboard soul-delay pre- courier motion media carbon military-grade shanty town.', id: 1},
+      { title: 'top 5 CSS tips', body: 'lorem ipsum', id: 2},
+    ])
+  return { posts }
+  }
 }
 
 </script>
