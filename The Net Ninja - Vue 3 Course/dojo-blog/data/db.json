@@ -1,25 +1,62 @@
-
 {
-    "posts": [
-      {
-        "id": 1,
-        "title": "welcome to the new blog",
-        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "tags": [
-          "webdev",
-          "coding",
-          "news"
-        ]
-      },
-      {
-        "id": 2,
-        "title": "top 5 CSS tips",
-        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "tags": [
-          "css",
-          "webdev",
-          "coding"
-        ]
-      }
-    ]
-  }
+  "posts": [
+    {
+      "id": 1,
+      "title": "welcome to the new blog",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "tags": [
+        "webdev",
+        "coding",
+        "news"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "top 5 CSS tips",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "tags": [
+        "css",
+        "webdev",
+        "coding"
+      ]
+    },
+    {
+      "title": "asdfsdaf",
+      "body": "sadfsdafsad",
+      "tags": [
+        "html",
+        "css"
+      ],
+      "id": 3
+    },
+    {
+      "title": "This is a new blog post",
+      "body": "This is the new blog post body",
+      "tags": [
+        "html",
+        "css",
+        "javascript",
+        "blogging"
+      ],
+      "id": 4
+    },
+    {
+      "title": "sdafsdaf",
+      "body": "sdafsadfsda",
+      "tags": [
+        "html",
+        "css"
+      ],
+      "id": 5
+    },
+    {
+      "title": "sadfsdaf",
+      "body": "sdafsdaf",
+      "tags": [
+        "html",
+        "css"
+      ],
+      "id": 6
+    }
+  ]
+}
