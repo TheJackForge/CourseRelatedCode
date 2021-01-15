@@ -7,7 +7,7 @@ const routes = [
     path: '/',
     name: 'Welcome',
     component: Welcome
-  }
+  },
 ]
 
 const router = createRouter({
