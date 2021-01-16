@@ -11,15 +11,18 @@
 <script>
     import useLogout from '../composables/useLogout'
     import getUser from '../composables/getUser'
+    import { useRouter } from 'vue-router'
 
 export default {
     setup() {
         const { logout, error } = useLogout()
         const { user } = getUser()
+        const router = useRouter()
 
         const handleClick = async () => {
             await logout()
             if (!error.value) {
+                router.push( { name: 'Welcome' })
                 console.log('User logged out')
             }
         }
