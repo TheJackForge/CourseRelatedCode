@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="handleSubmit">
     <h3>Sign Up</h3>
     <input type="text" required placeholder="Display Name" v-model="displayName">
     <input type="email" required placeholder="Email" v-model="email">
@@ -23,7 +23,14 @@ export default {
         const email = ref('')
         const password = ref('')
 
-        return { displayName, email, password, isPending }
+        const handleSubmit = async () => {
+            const res = await signup(email.value, password.value, displayName.value)
+            if (!error.value) {
+                console.log('User Signed Up')
+            } 
+        }
+
+        return { displayName, email, password, isPending, error, handleSubmit }
 
     }
 }
